@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kotxiposix_comunity/adaptive_layout/adaptive.dart';
 import 'package:kotxiposix_comunity/pages/home/home_page.dart';
 
 void main() {
@@ -14,8 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: PersonsContact(),
     );
   }
 }
-
