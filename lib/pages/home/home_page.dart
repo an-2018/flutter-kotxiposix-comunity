@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kotxiposix_comunity/constants.dart';
+import 'package:kotxiposix_comunity/pages/LiveChannels/live_channels.dart';
 import 'package:kotxiposix_comunity/pages/home/widgets/Hero.dart';
 
 class HomePage extends StatelessWidget {
@@ -8,7 +9,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          HeroWidget(),
+          LiveChannels(),
         ],
       ),
     );
