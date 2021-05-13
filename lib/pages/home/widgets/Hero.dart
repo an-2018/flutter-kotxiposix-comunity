@@ -7,6 +7,8 @@ class HeroWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
       alignment: Alignment.centerLeft,
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(

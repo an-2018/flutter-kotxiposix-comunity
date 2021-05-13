@@ -8,17 +8,39 @@ class LiveChannels extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-      color: Colors.red,
+      color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text("Live Channels", style: Theme.of(context).textTheme.headline2),
-          SizedBox(),
+          Padding(
+            padding: EdgeInsets.all(defaultPadding),
+          ),
           Container(
-              height: 300,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(150))),
+            child: Card(
+              child: Column(
+                children: [
+                  DrawerHeader(
+                    decoration: BoxDecoration(
+                      color: Colors.amber,
+                      image: DecorationImage(
+                        image: Image.asset("hero-image.png"),
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    title: Text("2020 World Champing Warzone"),
+                  )
+                ],
+              ),
+            ),
+          ),
+          Container(
+            height: 300,
+            width: double.maxFinite,
+            decoration: BoxDecoration(
+                color: Colors.blue, borderRadius: BorderRadius.circular(15)),
+            child: Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -94,7 +116,9 @@ class LiveChannels extends StatelessWidget {
                     ),
                   ),
                 ],
-              ))
+              ),
+            ),
+          )
         ],
       ),
     );

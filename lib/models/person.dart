@@ -1,9 +1,11 @@
 class Person {
-  final String firstName;
+  final String _firstName;
   final String email;
 
-  const Person(this.firstName, this.email);
+  const Person(this._firstName, this.email);
 }
+
+var obj = Person("nan", "unh");
 
 final List<Person> persons = personList
     .map(
