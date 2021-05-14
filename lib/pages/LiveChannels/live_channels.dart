@@ -1,9 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kotxiposix_comunity/constants.dart';
+import 'package:kotxiposix_comunity/models/Album.dart';
 import 'package:kotxiposix_comunity/pages/home/widgets/ButtonWidget.dart';
+import 'package:kotxiposix_comunity/services/sample_json_api.dart';
 
-class LiveChannels extends StatelessWidget {
+class LiveChannels extends StatefulWidget {
+  @override
+  _LiveChannelsState createState() => _LiveChannelsState();
+}
+
+class _LiveChannelsState extends State<LiveChannels> {
+  Future<List<Album>> futureAlbum;
+
+  @override
+  void initState() {
+    super.initState();
+    futureAlbum = AlbumApi().fetchAlbum();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,114 +27,89 @@ class LiveChannels extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Live Channels", style: Theme.of(context).textTheme.headline2),
-          Padding(
-            padding: EdgeInsets.all(defaultPadding),
-          ),
+          Text("Live Channels", style: Theme.of(context).textTheme.headline6),
           Container(
-            child: Card(
-              child: Column(
-                children: [
-                  DrawerHeader(
-                    decoration: BoxDecoration(
-                      color: Colors.amber,
-                      image: DecorationImage(
-                        image: Image.asset("hero-image.png"),
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text("2020 World Champing Warzone"),
-                  )
-                ],
-              ),
-            ),
-          ),
-          Container(
-            height: 300,
+            margin: EdgeInsets.symmetric(vertical: defaultMargin),
+            height: 30,
             width: double.maxFinite,
             decoration: BoxDecoration(
-                color: Colors.blue, borderRadius: BorderRadius.circular(15)),
-            child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Expanded(
-                    flex: 8,
-                    child: Container(
-                      color: Colors.black,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: defaultPadding),
-                      color: Colors.amber,
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "2020 World Champs Gaming Warzone",
-                        style: Theme.of(context).textTheme.subtitle1,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: defaultPadding),
-                      color: Colors.blueAccent,
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 10,
-                            decoration: BoxDecoration(
-                                color: Colors.black, shape: BoxShape.circle),
-                          ),
-                          Column(
-                            children: [
-                              Text("User Tam Tran"),
-                              Icon(Icons.check)
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: defaultPadding),
-                      color: Colors.redAccent,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ButtonWidget(
-                                color: Colors.blueAccent,
-                                text: "bt",
-                              )
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              ButtonWidget(
-                                color: Colors.blueAccent,
-                                text: "bt",
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                color: Colors.grey, borderRadius: BorderRadius.circular(10)),
+          ),
+          CardWidget(
+            imageUri: "images/hero-image.png",
+            title: "2020 World Champing Warzone",
+          ),
+          FutureBuilder<List<Album>>(
+              future: futureAlbum,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView(
+                    children: [
+                      for (var album in snapshot.data){ 
+                      Text("${album.title}");
+                      print();
+                      }
+                    ],
+                  );
+                  //Text(snapshot.data.title);
+                } else if (snapshot.hasError) {
+                  print("${futureAlbum} error");
+                  return Text("${snapshot.error}");
+                }
+
+                return CircularProgressIndicator();
+              }),
+        ],
+      ),
+    );
+  }
+}
+
+class CardWidget extends StatelessWidget {
+  final String imageUri, title, text1, text2;
+
+  const CardWidget({Key key, this.imageUri, this.title, this.text1, this.text2})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Card(
+        child: Column(
+          children: [
+            Container(
+              width: double.maxFinite,
+              height: 200.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.amber,
+                image: DecorationImage(
+                  image: AssetImage(imageUri),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          )
-        ],
+            ListTile(
+              title: Text(title ?? ""),
+            ),
+            ListTile(
+              title: Container(
+                alignment: Alignment.centerLeft,
+                width: double.maxFinite,
+                height: Theme.of(context).textTheme.bodyText1.fontSize,
+                child: Icon(Icons.ac_unit_sharp),
+              ),
+            ),
+            ListTile(
+              title: Container(
+                alignment: Alignment.centerLeft,
+                width: double.maxFinite,
+                height: Theme.of(context).textTheme.bodyText1.fontSize,
+                child: Icon(Icons.ac_unit_sharp),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

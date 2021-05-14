@@ -4,31 +4,23 @@ import 'package:kotxiposix_comunity/pages/LiveChannels/live_channels.dart';
 import 'package:kotxiposix_comunity/pages/home/widgets/Hero.dart';
 
 class HomePage extends StatelessWidget {
-  
-  String _name;
-
-  String get name {
-    return this._name;
-  }
-
-  set name(String name) {
-    this._name = name;
-  }
-
-  HomePage([Key key, this._name]) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
+        child: Container(
+          margin: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.20),
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
 //            HeroWidget(),
-            LiveChannels(),
-          ],
+              LiveChannels(),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
-var name = HomePage()._name;

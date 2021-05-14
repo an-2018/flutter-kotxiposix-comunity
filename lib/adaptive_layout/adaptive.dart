@@ -85,7 +85,7 @@ class PeopleList extends StatelessWidget {
       children: [
         for (var person in persons)
           ListTile(
-            title: Text(person.firstName),
+            title: Text(person.name),
             subtitle: Text(person.email),
             onTap: () => onTapPeopleList(person),
           )
@@ -103,7 +103,7 @@ class PersonDetail extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Text(person.firstName), Text(person.email)],
+        children: [Text(person.name), Text(person.email)],
       ),
     );
   }

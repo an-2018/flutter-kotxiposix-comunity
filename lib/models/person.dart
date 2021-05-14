@@ -3,6 +3,10 @@ class Person {
   final String email;
 
   const Person(this._firstName, this.email);
+
+  String get name{
+    return this._firstName;
+  }
 }
 
 var obj = Person("nan", "unh");
