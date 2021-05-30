@@ -10,7 +10,7 @@ class AlbumApi {
     return http.get(Uri.https(providerUrl, resource));
   }
 
-  Future<List<Album>> fetchAlbum() async {
+  Future<List<Album>> fetchAlbumList() async {
     final response = await http.get(Uri.https(providerUrl, '/albums/1/photos'));
     var albumList = <Album>[];
 
@@ -22,6 +22,17 @@ class AlbumApi {
       return albumList;
     } else {
       throw Exception("Failed to load album");
+    }
+  }
+
+  Future<Album> fetchAlbum() async {
+    final response =
+        await http.get(Uri.https("jsonplaceholder.typicode.com", "/albums/1"));
+    print(response.body);
+    if (response.statusCode == 200) {
+      return Album.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception("Fail to load data");
     }
   }
 }

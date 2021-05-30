@@ -11,7 +11,7 @@ class LiveChannels extends StatefulWidget {
 }
 
 class _LiveChannelsState extends State<LiveChannels> {
-  Future<List<Album>> futureAlbum;
+  Future<Album> futureAlbum;
 
   @override
   void initState() {
@@ -35,21 +35,22 @@ class _LiveChannelsState extends State<LiveChannels> {
                 color: Colors.white, borderRadius: BorderRadius.circular(10)),
           ),
           CardWidget(
-            imageUri: "images/hero-image.png",
+            imageUri:
+                "https://cdn.vox-cdn.com/thumbor/snH4LjjNq_uyiyxi3ISEqi6WcDg=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/22182760/patch_10_25_banner.jpg",
             title: "2020 World Champing Warzone",
             text1: "Random Lorem Ipsum dolor sit",
             text2: "Normla space around the world of change",
           ),
-          FutureBuilder<List<Album>>(
+          FutureBuilder<Album>(
               future: futureAlbum,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return ListView(
                     children: [
-                      for (var album in snapshot.data) Text("${album.title}")
+                      for (var album in List.of({snapshot.data}))
+                        Text("${album.title}")
                     ],
                   );
-                  //Text(snapshot.data.title);
                 } else if (snapshot.hasError) {
                   print("${futureAlbum} error");
                   return Text("${snapshot.error}");
@@ -57,6 +58,24 @@ class _LiveChannelsState extends State<LiveChannels> {
 
                 return CircularProgressIndicator();
               }),
+          Container(
+            height: 300,
+            child: GridView.count(
+              crossAxisCount: 2,
+              children: [
+                CardWidget(
+                  imageUri:
+                      "https://cdn.vox-cdn.com/thumbor/snH4LjjNq_uyiyxi3ISEqi6WcDg=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/22182760/patch_10_25_banner.jpg",
+                  title: "2020 World Champing Warzone",
+                ),
+                CardWidget(
+                  imageUri:
+                      "https://cdn.vox-cdn.com/thumbor/snH4LjjNq_uyiyxi3ISEqi6WcDg=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/22182760/patch_10_25_banner.jpg",
+                  title: "2020 World Champing Warzone",
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
@@ -80,9 +99,8 @@ class CardWidget extends StatelessWidget {
               height: 200.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.amber,
                 image: DecorationImage(
-                  image: AssetImage(imageUri),
+                  image: NetworkImage(imageUri),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -111,4 +129,15 @@ class CardWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+List<Widget> getCategoryList() {
+  return [
+    Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          color: Colors.amber,
+          child: Center(child: Text("name")),
+        ))
+  ];
 }
