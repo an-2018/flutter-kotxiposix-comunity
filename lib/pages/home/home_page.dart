@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kotxiposix_comunity/components/ProviderCard.dart';
 import 'package:kotxiposix_comunity/constants.dart';
 import 'package:kotxiposix_comunity/pages/LiveChannels/live_channels.dart';
 import 'package:kotxiposix_comunity/pages/home/widgets/Hero.dart';
@@ -16,6 +17,7 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
 //            HeroWidget(),
+              ProviderCardWidget(),
               LiveChannels(),
             ],
           ),

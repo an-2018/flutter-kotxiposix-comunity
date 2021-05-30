@@ -38,6 +38,8 @@ class _LiveChannelsState extends State<LiveChannels> {
           CardWidget(
             imageUri: "images/hero-image.png",
             title: "2020 World Champing Warzone",
+            text1: "Random Lorem Ipsum dolor sit",
+            text2: "Normla space around the world of change",
           ),
           FutureBuilder<List<Album>>(
               future: futureAlbum,
@@ -45,10 +47,7 @@ class _LiveChannelsState extends State<LiveChannels> {
                 if (snapshot.hasData) {
                   return ListView(
                     children: [
-                      for (var album in snapshot.data){ 
-                      Text("${album.title}");
-                      print();
-                      }
+                      for (var album in snapshot.data) Text("${album.title}")
                     ],
                   );
                   //Text(snapshot.data.title);
@@ -97,7 +96,7 @@ class CardWidget extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 width: double.maxFinite,
                 height: Theme.of(context).textTheme.bodyText1.fontSize,
-                child: Icon(Icons.ac_unit_sharp),
+                child: Icon(Icons.gamepad),
               ),
             ),
             ListTile(
@@ -105,7 +104,7 @@ class CardWidget extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 width: double.maxFinite,
                 height: Theme.of(context).textTheme.bodyText1.fontSize,
-                child: Icon(Icons.ac_unit_sharp),
+                child: Icon(Icons.travel_explore),
               ),
             ),
           ],

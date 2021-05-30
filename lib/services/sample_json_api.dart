@@ -6,8 +6,8 @@ import 'package:kotxiposix_comunity/models/Album.dart';
 class AlbumApi {
   final String providerUrl = "jsonplaceholder.typicode.com";
 
-  Future<http.Response> fetchAlbumFromPath(String path) {
-    return http.get(Uri.https(providerUrl, path));
+  Future<http.Response> fetchAlbumFromPath(String resource) {
+    return http.get(Uri.https(providerUrl, resource));
   }
 
   Future<List<Album>> fetchAlbum() async {
