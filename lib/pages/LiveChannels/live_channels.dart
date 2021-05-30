@@ -27,13 +27,12 @@ class _LiveChannelsState extends State<LiveChannels> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Live Channels", style: Theme.of(context).textTheme.headline6),
           Container(
             margin: EdgeInsets.symmetric(vertical: defaultMargin),
             height: 30,
             width: double.maxFinite,
             decoration: BoxDecoration(
-                color: Colors.grey, borderRadius: BorderRadius.circular(10)),
+                color: Colors.white, borderRadius: BorderRadius.circular(10)),
           ),
           CardWidget(
             imageUri: "images/hero-image.png",

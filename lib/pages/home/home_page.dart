@@ -17,7 +17,11 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
 //            HeroWidget(),
-              ProviderCardWidget(),
+              ProviderCardWidget(
+                title: "Hotel Perola",
+                price: "10 204 CVE",
+                porviderImage: "images/perola.png",
+              ),
               LiveChannels(),
             ],
           ),
